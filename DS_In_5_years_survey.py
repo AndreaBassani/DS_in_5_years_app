@@ -195,6 +195,14 @@ if 'users_input_collection' in locals():
             st.warning('Not enough entries to generate the groups. The minimum number of entries is 4', icon="⚠️")
     
     with st.expander('Data Management'):
-        modified_df = st.data_editor(users_input_collection, num_rows="dynamic")
+        
+        modified_df = st.data_editor(pd.read_csv("data/user_input_collection.csv"), num_rows="dynamic")
         
         modified_df.to_csv("data/user_input_collection.csv", index=False)
+    
+    with st.form('delete_df'):
+        delete_df_button = st.form_submit_button("Delete Data Frame")
+        if delete_df_button:
+            os.remove("data/user_input_collection.csv")
+            if not os.listdir('data/'):
+                st.success('Data Frame deleted successfully', icon="✅")
