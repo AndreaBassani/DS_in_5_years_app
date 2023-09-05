@@ -40,7 +40,7 @@ with st.form('user_input'):
 
     user_input_submit_button = st.form_submit_button("Submit")
 
-if os.listdir('data/'):
+if os.path.exists("data/user_input_collection.csv"):
     users_input_collection = pd.read_csv("data/user_input_collection.csv")
 elif user_input_submit_button:
     users_input_collection = pd.DataFrame(columns=['name', 'DS_skills_impact', 'DS_jobs_impact'])
