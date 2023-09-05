@@ -17,7 +17,7 @@ with st.form('user_input'):
     
     st.markdown(
                 """
-        **How AI will impact the job market in the next 5 years**
+        **How will AI impact the job market in the next 5 years**
         - 0: AI will have a negative impact on the job market, reducing the number of jobs
         - 50: AI will have a neutral impact on the job market
         - 100: AI will have a positive impact on the job market, creating new jobs
@@ -29,7 +29,7 @@ with st.form('user_input'):
     
     st.markdown(
                 """
-        **How AI will impact the Data Science and Data Engineering skills in the next 5 years**
+        **How will AI impact the Data Science and Data Engineering skills in the next 5 years**
         - 0: AI will not have any impact on the Data Science and Data Engineering skills
         - 50: 50% of the Data Science and Data Engineering skills will be impacted by AI (prompt engineering, code generation, etc.)
         - 100: 100% of the Data Science and Data Engineering skills will be impacted by AI
@@ -47,11 +47,15 @@ with st.form('user_input'):
 if user_input_submit_button and not name:
     st.error('Please insert your name', icon="🚨")
     st.stop()
-
+    
 if os.path.exists("data/user_input_collection.csv"):
     users_input_collection = pd.read_csv("data/user_input_collection.csv")
 elif user_input_submit_button:
     users_input_collection = pd.DataFrame(columns=['name', 'DS_skills_impact', 'DS_jobs_impact'])
+
+if user_input_submit_button and name in users_input_collection['name'].values:
+    st.error('Name already been used please use different name or contant the admin', icon="🚨")
+    st.stop()
 
 if user_input_submit_button:
         # add new user input row in df
