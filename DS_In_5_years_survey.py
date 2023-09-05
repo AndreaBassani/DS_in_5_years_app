@@ -7,7 +7,6 @@ import os
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from scipy.spatial.distance import euclidean
-import matplotlib.pyplot as plt
 
 with st.form('user_input'):
     st.write('Fill in the form')
