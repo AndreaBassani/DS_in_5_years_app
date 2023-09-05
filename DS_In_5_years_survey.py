@@ -11,7 +11,7 @@ from scipy.spatial.distance import euclidean
 
 with st.form('user_input'):
     st.write('Fill in the form')
-    name = st.text_input('Name', placeholder='')
+    name = st.text_input('Name', placeholder='', key = 'insert your name')
     
     st.markdown('---')
     
@@ -43,7 +43,10 @@ with st.form('user_input'):
     'DS_skills_impact':ds_skills_impact,
     }
   
-    user_input_submit_button = st.form_submit_button("Submit", disabled= not name)
+    user_input_submit_button = st.form_submit_button("Submit")
+if user_input_submit_button and not name:
+    st.error('Please insert your name', icon="🚨")
+    st.stop()
 
 if os.path.exists("data/user_input_collection.csv"):
     users_input_collection = pd.read_csv("data/user_input_collection.csv")
