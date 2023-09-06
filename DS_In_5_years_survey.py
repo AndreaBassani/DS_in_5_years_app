@@ -160,9 +160,9 @@ if 'users_input_collection' in locals():
             
             else:
                 clf = KMeansConstrained(
-                        n_clusters=4,
-                        size_min=len(users_input_collection)//4,
-                        size_max=(len(users_input_collection)//4)+1,
+                        n_clusters=3,
+                        size_min=len(users_input_collection)//3,
+                        size_max=(len(users_input_collection)//3)+1,
                         random_state=0
             )
                 df['cluster'] = clf.fit_predict(df[['DS_skills_impact', 'DS_jobs_impact']])
